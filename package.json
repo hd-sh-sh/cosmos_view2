@@ -1,0 +1,18 @@
+{
+  "name": "nasa-apod-viewer",
+  "version": "1.0.0",
+  "description": "NASA 오늘의 우주 사진 뷰어",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "nasa",
+    "apod",
+    "astronomy",
+    "space"
+  ],
+  "author": "",
+  "license": "MIT"
+}
