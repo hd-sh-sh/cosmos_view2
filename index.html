@@ -326,12 +326,12 @@
         }
 
         .info-section .original-title {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--color-text-secondary);
             font-style: italic;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Gallery */
@@ -389,6 +389,7 @@
         .gallery-item:nth-child(3) { animation-delay: 0.3s; }
         .gallery-item:nth-child(4) { animation-delay: 0.4s; }
         .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
 
         .gallery-item:hover {
             transform: translateY(-8px);
@@ -676,17 +677,20 @@
                 const translatedExplanation = await translateToKorean(data.explanation);
                 data.translatedExplanation = translatedExplanation;
                 
-                displayAPOD(data);
+                await displayAPOD(data);
             } catch (error) {
                 apodContent.innerHTML = `<div class="error">오류가 발생했습니다: ${error.message}</div>`;
             }
         }
 
         // APOD 표시
-        function displayAPOD(data) {
+        async function displayAPOD(data) {
             const mediaContent = data.media_type === 'video' 
                 ? `<iframe src="${data.url}" allowfullscreen></iframe>`
                 : `<img src="${data.url}" alt="${data.title}" loading="lazy">`;
+
+            // 제목도 번역
+            const translatedTitle = await translateToKorean(data.title);
 
             apodContent.innerHTML = `
                 <div class="apod-container">
@@ -695,9 +699,9 @@
                     </div>
                     <div class="info-section">
                         <div class="date">${formatDate(data.date)}</div>
-                        <h2>${data.title}</h2>
+                        <h2>${translatedTitle}</h2>
+                        <div class="original-title">${data.title}</div>
                         <div class="description">${data.translatedExplanation}</div>
-                        <div class="original-title">Original: ${data.title}</div>
                     </div>
                 </div>
             `;
@@ -708,7 +712,7 @@
             galleryContent.innerHTML = '<div class="loading">갤러리를 불러오는 중</div>';
             
             try {
-                const dates = getRandomDates(5);
+                const dates = getRandomDates(6);
                 const promises = dates.map(async date => {
                     const url = USE_PROXY 
                         ? `${API_ENDPOINT}?date=${date}`
