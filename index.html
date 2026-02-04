@@ -322,16 +322,15 @@
             font-size: 1.05rem;
             line-height: 1.8;
             color: var(--color-text-secondary);
-            margin-bottom: 32px;
         }
 
-        .info-section .original-title {
-            font-size: 1rem;
+        .info-section .translated-title {
+            font-size: 1.1rem;
             color: var(--color-text-secondary);
-            font-style: italic;
-            margin-bottom: 24px;
-            padding-bottom: 24px;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 400;
         }
 
         /* Gallery */
@@ -699,8 +698,8 @@
                     </div>
                     <div class="info-section">
                         <div class="date">${formatDate(data.date)}</div>
-                        <h2>${translatedTitle}</h2>
-                        <div class="original-title">${data.title}</div>
+                        <h2>${data.title}</h2>
+                        <div class="translated-title">${translatedTitle}</div>
                         <div class="description">${data.translatedExplanation}</div>
                     </div>
                 </div>
