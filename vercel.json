@@ -1,15 +1,8 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "api/apod.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/apod",
-      "dest": "/api/apod.js"
+      "source": "/api/apod",
+      "destination": "/api/apod.js"
     }
   ]
 }
